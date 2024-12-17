@@ -1,0 +1,5 @@
+<li class="bottom-line-dot">
+	<a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}">
+
+		<span class="badge{if condition="$key eq 1"} badge-first{/if}{if condition="$key eq 2"} badge-second{/if}{if condition="$key eq 3"} badge-third{/if}">{$key}</span>{$vo.vod_name|mac_substring=15}</a>
+</li>

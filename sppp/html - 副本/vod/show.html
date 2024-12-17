@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {include file="seo/vod_show"}   
+	{include file="block/include"}
+</head>
+<body>
+	{include file="block/head"}
+    <div class="container">
+        <div class="row">
+        	<div class="col-lg-wide-75 col-xs-1 padding-0">	
+	            <div class="stui-pannel stui-pannel-bg clearfix">
+					<div class="stui-pannel-box">						
+						<!-- 筛选 -->		
+						<div class="stui-pannel_hd">
+							<div class="stui-pannel__head active bottom-line clearfix">
+								<h3 class="title">
+									<img src="{$maccms.path}statics/icon/icon_27.png"/>
+									{$obj.type_name}筛选
+								</h3>						
+							</div>
+							
+							<ul class="stui-screen__list letter-list type-slide clearfix">
+								<li>
+									<span class="text-muted">按字母</span>
+								</li>
+								<li {if condition="$param['letter'] eq ''"} class="active"{/if}><a href="{:mac_url_type($obj,['area'=>$param['area'],'lang'=>$param['lang'],'year'=>$param['year'],'level'=>$param['level'],'letter'=>'','state'=>$param['state'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>$param['by'] ],'show')}">全部</a></li>
+				                {maccms:foreach name=":explode(',','A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,0-9')" id="vo2" key="key2"}
+				                <li {if condition="$param['letter'] eq $vo2"} class="active"{/if}><a href="{:mac_url_type($obj,['area'=>$param['area'],'lang'=>$param['lang'],'year'=>$param['year'],'level'=>$param['level'],'letter'=>$vo2,'state'=>$param['state'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>$param['by'] ],'show')}">{$vo2}</a><li>
+				                {/maccms:foreach}							
+							</ul>			
+						</div>
+						<!-- end 筛选 -->
+					</div>
+				</div>
+				<div class="stui-pannel stui-pannel-bg clearfix">
+					<div class="stui-pannel-box">
+						
+						<!-- 排序 -->		
+						<div class="stui-pannel_hd">
+							<div class="stui-pannel__head active bottom-line clearfix">
+								<ul class="nav nav-head">
+									<li {if condition="$param.by eq '' || $param.by eq 'time'"} class="active"{/if}><a href="{:mac_url_type($obj,['area'=>$param['area'],'lang'=>$param['lang'],'year'=>$param['year'],'level'=>$param['level'],'letter'=>$param['letter'],'state'=>$param['state'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>'time' ],'show')}">按时间</a></li>
+							        <li {if condition="$param.by eq 'hits'"} class="active"{/if}><a href="{:mac_url_type($obj,['area'=>$param['area'],'lang'=>$param['lang'],'year'=>$param['year'],'level'=>$param['level'],'letter'=>$param['letter'],'state'=>$param['state'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>'hits' ],'show')}">按人气</a></li>
+							        <li {if condition="$param.by eq 'score'"} class="active"{/if}><a href="{:mac_url_type($obj,['area'=>$param['area'],'lang'=>$param['lang'],'year'=>$param['year'],'level'=>$param['level'],'letter'=>$param['letter'],'state'=>$param['state'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>'score' ],'show')}">按评分</a></li>
+								</ul>																
+							</div>	
+						</div>
+						<!-- end 排序 -->		
+						
+						<div class="stui-pannel_bd">
+							<ul class="stui-vodlist clearfix">
+								{maccms:vod num="36" paging="yes" pageurl="vod/show" type="current" order="desc" by="time"}
+								<li class="col-md-6 col-sm-4 col-xs-3">
+									{include file="block/vod_box"}<!-- 列表-->															
+								</li>
+								 {/maccms:vod}
+							</ul>	
+						</div>						
+					</div>				
+				</div>		
+				{include file="block/page"}<!-- 翻页-->		
+			</div>				
+			<div class="col-lg-wide-25 col-xs-1 stui-pannel-side hidden-sm hidden-xs padding-0">	
+				{include file="block/hot"}<!-- 热播-->				
+			</div>
+        </div>
+    </div>
+	{include file="block/foot"}
+</body>
+</html>

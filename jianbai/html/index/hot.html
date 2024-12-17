@@ -1,0 +1,14 @@
+                	<div class="stui-vodlist__head">
+                	    <a class="more1 pull-right">今日更新&nbsp;<em>{:mac_data_count(0,'today','vod')}</em>&nbsp;部&nbsp;&nbsp;共&nbsp;<em>{:mac_data_count(0,'all','vod')}&nbsp;</em>部<span class="split_line"></span>
+		            </a>
+						<h3> 热播推荐</h3>						
+					</div>
+        			<!-- 热门推荐 -->
+        			<ul class="stui-vodlist clearfix">
+						{maccms:vod  type="all" order="desc" by="time"  level="1"}
+						<li>
+							{include file="block/vod_box"}											
+						</li>
+						{/maccms:vod}
+					</ul>
+					<!-- end 热门推荐 -->
